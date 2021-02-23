@@ -16,8 +16,23 @@
     <link rel="stylesheet" href="style.css">
     <title>Participation concours photo</title>
 </head>
+
+<header>
+    <div class="container">
+        <div class="bg-light">
+            <img src="./img/gedimat.png" class="float-none rounded">
+            <a href="inscription.html">Inscription</a>
+        </div>
+    </div>
+</header>
+
 <body>
     <div class="container">
+<<<<<<< HEAD
+=======
+        <br>
+        <p class="text-start fs-5">En appuyant sur le bouton, vous participerez au concours de photo (sans possibilité de changements)</p>
+>>>>>>> ba240ed86e1d64d1a90b639374ad2b7be6a214bd
         <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
@@ -47,4 +62,10 @@
         }
     ?>
 </body>
+
+<footer>
+    <div class="float">
+
+    </div>
+</footer>
 </html>
