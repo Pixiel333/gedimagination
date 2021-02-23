@@ -8,9 +8,21 @@
     <link rel="stylesheet" href="style.css">
     <title>Participation concours photo</title>
 </head>
+
+<header>
+    <div class="container">
+        <div class="bg-light">
+            <img src="./img/gedimat.png" class="float-none rounded">
+            <a href="inscription.html">Inscription</a>
+        </div>
+    </div>
+</header>
+
 <body>
     <div class="container">
-        <form action="" method="POST">
+        <br>
+        <p class="text-start fs-5">En appuyant sur le bouton, vous participerez au concours de photo (sans possibilité de changements)</p>
+        <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
             <input type="texte" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo">
@@ -33,4 +45,10 @@
         </form>
     </div>
 </body>
+
+<footer>
+    <div class="float">
+
+    </div>
+</footer>
 </html>
