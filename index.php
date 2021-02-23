@@ -1,10 +1,5 @@
 <?php 
     require_once 'functions.inc.php';
-    if (isset($_POST['submit'])) 
-    {
-        $row = donneeForm();
-        unset($_POST);
-    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,31 +28,34 @@
         <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
-            <input type="texte" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo">
+            <input type="texte" class="form-control <?= formValide("titre");?>" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo" >
+            <?= invalidMessage("titre");?>
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <input type="date" class="form-control" name="date" id="date" value="<?php echo date('Y-m-d'); ?>">
+            <input type="date" class="form-control <?= formValide("date")?>" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" >
+            <?= invalidMessage("date");?>
         </div>
         <div class="form-group">
-            <label class="custom-file">
-                <input type="file" name="image" id="file" class="custom-file-input">
-                <span class="custom-file-control"></span>
-            </label>
+            <input type="file" name="image" id="file" class="custom-file-input <?= formValide("image")?>" accept="image/*" >
+            <?= invalidMessage("image");?>
         </div>
         <div class="form-group">
             <label for="exampleTextarea">Déscription de la photo</label>
-            <textarea class="form-control" name="description" id="exampleTextarea" rows="3" maxlength="666"></textarea>
+            <textarea class="form-control <?= formValide("description")?>" name="description" id="exampleTextarea" rows="3" maxlength="666" ></textarea>
+            <?= invalidMessage("description");?>
         </div>
             <button type="submit" name="submit" class="btn btn-primary mt-2">Participer</button>
         </form>
     </div>
     <?php 
-        if ($row === 1)
+        if (isset($_POST['submit'])) 
         {
-            
+            $row = donneeForm();
+            unset($_POST);
         }
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 </body>
 
 <footer>
