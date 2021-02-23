@@ -1,38 +1,43 @@
 <?php
-
-function connexionBase() {
-    $hote='mysql:host=localhost;port=3306;dbname=gedimanigation'; 
-    $utilisateur='root'; 
-    $mot_passe=''; 
-    try {
-        $connexion = new PDO($hote, $utilisateur, $mot_passe);
-        $connexion->exec("set names utf8");
-        return $connexion;
-    }
-    catch(PDOException $e) {
-        throw new Exception('Connexion impossible');
+require_once 'DAL.inc.php';
+function donneeForm() 
+{
+    echo "donneform";
+    if (isset($_POST['titre']) && isset($_POST['date']) && isset($_FILES['image']) && isset($_POST['description']))
+    {
+        echo "premierif";
+        if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']) && !empty($_POST['description']))
+        {
+            echo "deuxiemeif";
+            $titre = htmlspecialchars($_POST['titre']);
+            $date = htmlspecialchars($_POST['date']);
+            $description = htmlspecialchars($_POST['description']);
+            $chemin_photo = uploadImage();
+            $row =insert_bdd($titre, $date, $description, $chemin_photo, "polivier@exemple.com");
+            return $row;
+        }
     }
 }
 
-function insert_bdd()
+function uploadImage() 
 {
-    if (isset($_POST['titre']) && isset($_POST['date']) && isset($_POST['image']) && isset($_POST['description']))
+    // Copie dans le repertoire du script avec un nom
+    // incluant l'heure a la seconde pres 
+    $repertoireDestination = dirname(dirname(dirname(__FILE__)))."\\data\\images\\";
+    $infoExt = new SplFileInfo($_FILES["image"]["name"]);
+    $nomDestination        = "image".date("YmdHis"). '.'.$infoExt->getExtension();
+    if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+        if (rename($_FILES["image"]["tmp_name"], $repertoireDestination.$nomDestination)) 
+        {
+            return $repertoireDestination.$nomDestination;
+        } 
+        else 
+        {
+            echo "Le déplacement du fichier temporaire a échoué";
+        }          
+    } 
+    else 
     {
-        $titre = htmlspecialchars($_POST['titre']);
-        
-        try {
-			$connexion=connexionBase();
-			$requete = 'INSERT INTO photo(titre, date, description, chemin_photo) VALUES(:titre, :date,:description,:chemin_photo)'; 
-			$prep = $connexion->prepare($requete);
-			$prep->bindValue(':titre', $isbn);
-			$prep->bindValue(':date', $titre);
-			$prep->bindValue(':descrption', $annee);
-			$prep->bindValue(':chemin_photo', $auteur);
-			$ok =$prep->execute();
-			return $prep->rowCount();
-		}
-		catch (Exception $e) {
-			throw new Exception($e->getMessage());
-		}
+        echo "Le fichier n'a pas été uploadé (trop gros ?)";
     }
 }

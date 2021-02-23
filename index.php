@@ -1,3 +1,11 @@
+<?php 
+    require_once 'functions.inc.php';
+    if (isset($_POST['submit'])) 
+    {
+        $row = donneeForm();
+        unset($_POST);
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +18,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="POST">
+        <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
             <input type="texte" class="form-control" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo">
@@ -29,8 +37,14 @@
             <label for="exampleTextarea">Déscription de la photo</label>
             <textarea class="form-control" name="description" id="exampleTextarea" rows="3" maxlength="666"></textarea>
         </div>
-            <button type="submit" class="btn btn-primary mt-2">Participer</button>
+            <button type="submit" name="submit" class="btn btn-primary mt-2">Participer</button>
         </form>
     </div>
+    <?php 
+        if ($row === 1)
+        {
+            
+        }
+    ?>
 </body>
 </html>
