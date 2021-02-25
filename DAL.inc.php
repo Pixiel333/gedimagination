@@ -1,9 +1,9 @@
 <?php
 
 function connexionBase() {
-    $hote='mysql:host=localhost;port=3306;dbname=gedimanigation'; 
-    $utilisateur='root'; 
-    $mot_passe=''; 
+    $hote='mysql:host=10.0.0.59;port=3306;dbname=gedimanigation'; 
+    $utilisateur='user'; 
+    $mot_passe='123456789'; 
     try {
         $connexion = new PDO($hote, $utilisateur, $mot_passe);
         $connexion->exec("set names utf8");
