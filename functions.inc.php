@@ -2,15 +2,16 @@
 require_once 'DAL.inc.php';
 function donneeForm() 
 {
-    if (isset($_POST['titre']) && isset($_POST['date']) && isset($_FILES['image']) && isset($_POST['description']))
+    if (isset($_POST['titre']) && isset($_POST['date']) && isset($_FILES['image']) && isset($_POST['description']) && isset($_SESSION['email']))
     {
-        if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']['name']) && !empty($_POST['description']))
+        if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']['name']) && !empty($_POST['description']) && tailleImage())
         {
             $titre = htmlspecialchars($_POST['titre']);
             $date = htmlspecialchars($_POST['date']);
             $description = htmlspecialchars($_POST['description']);
             $chemin_photo = uploadImage();
-            $row =insert_bdd($titre, $date, $description, $chemin_photo, "polivier@exemple.com");
+            $email = $_SESSION['email'];
+            $row =insert_bdd($titre, $date, $description, $chemin_photo, $email);
             return $row;
         }
         else
@@ -68,7 +69,11 @@ function formValide($nomInput)
             {
                 return "is-invalid";
             }
-            else 
+            else if (tailleImage() === false)
+            {
+                return "is-invalid";
+            }
+            else
             {
                 return "is-valid";
             }
@@ -101,8 +106,63 @@ function invalidMessage($nomInput)
             $message .= "Veuillez saisir le champs.";
         break;
     }
+    if ($nomInput = "image" && tailleImage() === false)
+    {
+        $message = "La taille de l'image est trop volimineuse (10Mo max)";
+    }
     if (formValide($nomInput) === "is-invalid")
     {
         return "<div class=\"invalid-feedback\">". $message ."</div>";
+    }
+}
+
+function verifDate()
+{
+    $dateConcours = dateConcours();
+    $today = date('Y-m-d');
+    if ($today >= $dateConcours['date_debut_insc'] && $today <= $dateConcours['date_fin_insc'])
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function dejaParticipe()
+{
+    $email = $_SESSION['email'];
+    $emailParticipants = participants();
+    $bool = false;
+    foreach ($emailParticipants as $key => $value)
+    {
+        if ($email === $value['email'])
+        {
+            $bool = true;
+        }
+    }
+    if ($bool)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function tailleImage()
+{
+    if (isset($_FILES['image']))
+    {
+        if ($_FILES['image']['size'] > 10000000)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

@@ -1,9 +1,12 @@
 <?php
 
 function connexionBase() {
-    $hote='mysql:host=10.0.0.59;port=3306;dbname=gedimanigation'; 
-    $utilisateur='user'; 
-    $mot_passe='123456789'; 
+    //$hote='mysql:host=10.0.0.59;port=3306;dbname=gedimanigation';
+    //$utilisateur='user'; 
+    //$mot_passe='123456789'; 
+    $hote='mysql:host=localhost;port=3306;dbname=gedimanigation';
+    $utilisateur='root'; 
+    $mot_passe='';
     try {
         $connexion = new PDO($hote, $utilisateur, $mot_passe);
         $connexion->exec("set names utf8");
@@ -31,4 +34,34 @@ function insert_bdd($titre, $date, $description, $chemin_photo, $email)
     catch (Exception $e) {
         echo $e->getMessage();
     }  
+}
+
+function dateConcours()
+{
+    try {
+        $connexion=connexionBase();
+        $requete = 'SELECT date_debut_insc, date_fin_insc FROM date'; 
+        $prep = $connexion->prepare($requete);
+        $prep->execute();
+        $result = $prep->fetch();
+        return $result;
+    }
+    catch (Exception $e) {
+        echo $e->getMessage();
+    } 
+}
+
+function participants() 
+{
+    try {
+        $connexion=connexionBase();
+        $requete = 'SELECT email FROM photo'; 
+        $prep = $connexion->prepare($requete);
+        $prep->execute();
+        $result = $prep->fetchAll();
+        return $result;
+    }
+    catch (Exception $e) {
+        echo $e->getMessage();
+    } 
 }
