@@ -4,7 +4,7 @@ function donneeForm()
 {
     if (isset($_POST['titre']) && isset($_POST['date']) && isset($_FILES['image']) && isset($_POST['description']) && isset($_SESSION['email']))
     {
-        if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']['name']) && !empty($_POST['description']) && tailleImage())
+        if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']['name']) && !empty($_POST['description']) && tailleImage() && verifImage())
         {
             $titre = htmlspecialchars($_POST['titre']);
             $date = htmlspecialchars($_POST['date']);
@@ -55,6 +55,10 @@ function formValide($nomInput)
             {
                 return "is-invalid";
             }
+            else if (tailleImage() === false || verifImage() === false)
+            {
+                return "is-invalid";
+            }
             else 
             {
                 return "is-valid";
@@ -66,10 +70,6 @@ function formValide($nomInput)
         if (isset($_POST[$nomInput]))
         {
             if (empty($_POST[$nomInput]))
-            {
-                return "is-invalid";
-            }
-            else if (tailleImage() === false)
             {
                 return "is-invalid";
             }
@@ -106,9 +106,16 @@ function invalidMessage($nomInput)
             $message .= "Veuillez saisir le champs.";
         break;
     }
-    if ($nomInput = "image" && tailleImage() === false)
+    if ($nomInput === "image")
     {
-        $message = "La taille de l'image est trop volimineuse (10Mo max)";
+        if (verifImage() === false)
+        {
+            $message = "Le format de l'image n'est pas la bonne !";
+        }
+        else if (tailleImage() === false)
+        {
+            $message = "La taille de l'image est trop volimineuse (10Mo max)";
+        }
     }
     if (formValide($nomInput) === "is-invalid")
     {
@@ -164,5 +171,26 @@ function tailleImage()
         {
             return true;
         }
+    }
+}
+
+function verifImage()
+{
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    if (false === $ext = array_search(
+        $finfo->file($_FILES['image']['tmp_name']),
+        array(
+            'jpg' => 'image/jpeg',
+            'png' => 'image/png',
+            'jpeg' => 'image/jpg',
+        ),
+        true
+    ))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
     }
 }
