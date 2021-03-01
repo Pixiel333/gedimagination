@@ -10,6 +10,7 @@ function connexionBase() {
     try {
         $connexion = new PDO($hote, $utilisateur, $mot_passe);
         $connexion->exec("set names utf8");
+        $connexion->exec("SET CHARACTER SET utf8");
         return $connexion;
     }
     catch(PDOException $e) {
