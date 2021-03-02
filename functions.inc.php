@@ -6,9 +6,9 @@ function donneeForm()
     {
         if (!empty($_POST['titre']) && !empty($_POST['date']) && !empty($_FILES['image']['name']) && !empty($_POST['description']) && tailleImage() && verifImage())
         {
-            $titre = htmlspecialchars($_POST['titre']);
-            $date = htmlspecialchars($_POST['date']);
-            $description = htmlspecialchars($_POST['description']);
+            $titre = htmlspecialchars($_POST['titre'], ENT_QUOTES);
+            $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
+            $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
             $chemin_photo = uploadImage();
             $email = $_SESSION['email'];
             $row =insert_bdd($titre, $date, $description, $chemin_photo, $email);
