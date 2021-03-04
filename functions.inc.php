@@ -198,3 +198,18 @@ function verifImage()
     }
     
 }
+
+function gardeValeur($valeur)
+{
+    $texte = "";
+    if(isset($_POST[$valeur]) && !empty($_POST[$valeur]))
+    {
+        $texte = htmlspecialchars($_POST[$valeur], ENT_QUOTES);
+    }
+    elseif ($valeur === "date")
+    {
+        $texte = date('Y-m-d');
+    }
+    return $texte;
+}
+

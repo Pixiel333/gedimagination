@@ -40,12 +40,12 @@
         <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
-            <input type="texte" class="form-control <?= formValide("titre");?>" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo" >
+            <input type="texte" class="form-control <?= formValide("titre");?>" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo" value="<?php echo gardeValeur("titre"); ?>">
             <?= invalidMessage("titre");?>
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <input type="date" class="form-control <?= formValide("date")?>" name="date" id="date" value="<?php echo date('Y-m-d'); ?>" >
+            <input type="date" class="form-control <?= formValide("date")?>" name="date" id="date" value="<?php echo gardeValeur("date"); ?>" >
             <?= invalidMessage("date");?>
         </div>
         <div class="form-group">
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="exampleTextarea">Déscription de la photo</label>
-            <textarea class="form-control <?= formValide("description")?>" name="description" id="exampleTextarea" rows="3" maxlength="666" ></textarea>
+            <textarea class="form-control <?= formValide("description")?>" name="description" id="exampleTextarea" rows="3" maxlength="666" ><?php echo gardeValeur("description"); ?></textarea>
             <?= invalidMessage("description");?>
         </div>
             <button type="submit" name="submit" class="btn btn-primary mt-2">Participer</button>
