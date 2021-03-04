@@ -176,21 +176,25 @@ function tailleImage()
 
 function verifImage()
 {
-    $finfo = new finfo(FILEINFO_MIME_TYPE);
-    if (false === $ext = array_search(
-        $finfo->file($_FILES['image']['tmp_name']),
-        array(
-            'jpg' => 'image/jpeg',
-            'png' => 'image/png',
-            'jpeg' => 'image/jpg',
-        ),
-        true
-    ))
+    if (isset($_FILES['image']) && !empty($_FILES['image']['name']))
     {
-        return false;
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        if (false === $ext = array_search(
+            $finfo->file($_FILES['image']['tmp_name']),
+            array(
+                'jpg' => 'image/jpeg',
+                'png' => 'image/png',
+                'jpeg' => 'image/jpg',
+            ),
+            true
+        ))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
-    else
-    {
-        return true;
-    }
+    
 }

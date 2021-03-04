@@ -2,7 +2,7 @@
     require_once 'functions.inc.php';
     include_once 'header.php';
 
-    if (verifDate() == 0)
+    if (verifDate() == false)
     {
         header('Location: finConcours.php');
         exit();

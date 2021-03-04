@@ -27,7 +27,7 @@
             {
                 echo "<div class=\"alert alert-success\" role=\"alert\"> Merci d'avoir particpé au concours </div>";
             }
-            if (dateConcours() === false)
+            if (verifDate() === false)
             {
                 echo "<div class=\"alert alert-danger\" role=\"alert\"> Le concours est terminé !! </div>";
             }

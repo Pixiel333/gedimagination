@@ -1,12 +1,12 @@
 <?php
 
 function connexionBase() {
-    //$hote='mysql:host=10.0.0.59;port=3306;dbname=gedimanigation';
-    //$utilisateur='user'; 
-    //$mot_passe='123456789'; 
-    $hote='mysql:host=localhost;port=3306;dbname=gedimanigation';
-    $utilisateur='root'; 
-    $mot_passe='';
+    $hote='mysql:host=10.0.0.59;port=3306;dbname=gedimanigation';
+    $utilisateur='user'; 
+    $mot_passe='123456789'; 
+    //$hote='mysql:host=localhost;port=3306;dbname=gedimanigation';
+    //$utilisateur='root'; 
+    //$mot_passe='';
     try {
         $connexion = new PDO($hote, $utilisateur, $mot_passe);
         $connexion->exec("set names utf8");
@@ -41,7 +41,7 @@ function dateConcours()
 {
     try {
         $connexion=connexionBase();
-        $requete = 'SELECT date_debut_insc, date_fin_insc FROM date'; 
+        $requete = 'SELECT date_debut_insc, date_fin_insc FROM DATE'; 
         $prep = $connexion->prepare($requete);
         $prep->execute();
         $result = $prep->fetch();
