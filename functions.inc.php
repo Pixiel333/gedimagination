@@ -11,13 +11,47 @@ function donneeForm()
             $description = htmlspecialchars($_POST['description'], ENT_QUOTES);
             $chemin_photo = uploadImage();
             $email = $_SESSION['email'];
-            $row =insert_bdd($titre, $date, $description, $chemin_photo, $email);
-            return $row;
+
+            if (strlen($titre) > 80 || strlen($description) > 666 || validationDate() === false)
+            {
+                return 0;
+            }
+            else 
+            {
+                $row =insert_bdd($titre, $date, $description, $chemin_photo, $email);
+                return $row;    
+            }
         }
         else
         {
 
         }
+    }
+}
+
+function validationDate()
+{
+    $date = "";
+    if (isset($_POST["date"]) && !empty($_POST["date"]))
+    {
+        $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
+    }
+    if (strtotime($date))
+    {
+        if (strpos($date,'-')!== false)
+        {
+            list($day, $month, $year) = explode('-',$date);
+            return checkdate($month, $day, $year);
+            echo checkdate($month, $day, $year);
+        }
+        else
+        {
+            return false;    
+        }
+    }
+    else
+    {
+        return false;    
     }
 }
 
@@ -73,6 +107,9 @@ function formValide($nomInput)
             {
                 return "is-invalid";
             }
+            elseif ($nomInput === "date" && validationDate() === false) {
+                return "is-invalid" ;
+            }
             else
             {
                 return "is-valid";
@@ -117,6 +154,14 @@ function invalidMessage($nomInput)
             $message = "La taille de l'image est trop volimineuse (10Mo max)";
         }
     }
+    elseif ($nomInput === "date")
+    {
+        if (validationDate() === false )
+        {
+            $message = "Le format de la date n'est pas valide !";
+        }
+    }
+
     if (formValide($nomInput) === "is-invalid")
     {
         return "<div class=\"invalid-feedback\">". $message ."</div>";
@@ -204,7 +249,14 @@ function gardeValeur($valeur)
     $texte = "";
     if(isset($_POST[$valeur]) && !empty($_POST[$valeur]))
     {
-        $texte = htmlspecialchars($_POST[$valeur], ENT_QUOTES);
+        if ($valeur === "date" && validationDate() === false) 
+        {
+            $texte = date('Y-m-d');
+        }
+        else
+        {
+            $texte = htmlspecialchars($_POST[$valeur], ENT_QUOTES);
+        }
     }
     elseif ($valeur === "date")
     {
@@ -212,4 +264,3 @@ function gardeValeur($valeur)
     }
     return $texte;
 }
-

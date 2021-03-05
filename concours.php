@@ -40,7 +40,7 @@
         <form enctype="multipart/form-data" action="" method="POST">
         <div class="form-group">
             <label for="titre">Titre</label>
-            <input type="texte" class="form-control <?= formValide("titre");?>" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo" value="<?php echo gardeValeur("titre"); ?>">
+            <input type="texte" class="form-control <?= formValide("titre");?>" name="titre" id="titre" aria-describedby="titre" placeholder="Titre de la photo" value="<?php echo gardeValeur("titre"); ?>" maxlength="80">
             <?= invalidMessage("titre");?>
         </div>
         <div class="form-group">
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label for="exampleTextarea">Déscription de la photo</label>
-            <textarea class="form-control <?= formValide("description")?>" name="description" id="exampleTextarea" rows="3" maxlength="666" ><?php echo gardeValeur("description"); ?></textarea>
+            <textarea class="form-control <?= formValide("description")?>" name="description" id="exampleTextarea" rows="5" maxlength="666"><?php echo gardeValeur("description"); ?></textarea>
             <?= invalidMessage("description");?>
         </div>
             <button type="submit" name="submit" class="btn btn-primary mt-2">Participer</button>
