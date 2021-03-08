@@ -19,7 +19,7 @@
 	{
         try {
             $connexion = connexionBase();
-            $requete = 'SELECT * FROM date';
+            $requete = 'SELECT * FROM DATE';
             $prep = $connexion->prepare($requete);
             $prep->execute();
             $result = $prep->fetch();
