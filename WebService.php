@@ -7,7 +7,7 @@
             $requete = 'SELECT id, titre, description, date, chemin_photo FROM PHOTO';
             $prep = $connexion->prepare($requete);
             $prep->execute();
-            $result = $prep->fetchAll();
+            $result = $prep->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
         catch (Exception $e) {
@@ -22,7 +22,7 @@
             $requete = 'SELECT * FROM DATE';
             $prep = $connexion->prepare($requete);
             $prep->execute();
-            $result = $prep->fetch();
+            $result = $prep->fetch(PDO::FETCH_ASSOC);
             return $result;
         }
         catch (Exception $e) {
