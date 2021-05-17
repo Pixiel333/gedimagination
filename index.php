@@ -29,8 +29,6 @@
 </body>
 
 <footer>
-    <div class="float">
-
-    </div>
+    <a href="mentionLegal.html">Mention Legal</a>
 </footer>
 </html>
