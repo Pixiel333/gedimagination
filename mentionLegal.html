@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="simili_corps">
+
+        <div class="barrePartageContainer">
+        <button id="btnBarrePartage" class="showHideSingle" data-selector="#barrePartage" data-slide="300" data-state="0">Partager</button>
+        <div id="barrePartage" class="invisible" style="display: none;">
+            <ul>
+                <li><a class="external twitter" title="Partager sur Twitter" href="https://twitter.com/share?url=https://www.gedimat.fr%2Farticle-mentions-legales-64.htm">Twitter</a></li>
+                <li><a class="facebook" title="Partager sur Facebook" id="shareBtn">Facebook</a></li>
+            </ul>
+        </div>
+                                                                                    <!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+
+<script type="text/javascript">
+
+var link        = 'https://www.gedimat.fr/article-mentions-legales-64.htm';
+var title       = 'Mentions légales';
+var description = ' 1. Informations g&eacute;n&eacute;rales Le site &laquo; www.gedimat.fr &raquo; a &eacute;t&eacute; &eacute;labor&eacute; par GEDEX La soci&eacute;t&eacute; GEDEX, dont le si&egrave;ge social est au 6-8 rue Louis Rouquier - 92300 LEVALLOIS...';
+var image       = '';
+
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.0&appId=367492883367165&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    $(document).ready(function() {
+        document.getElementById('shareBtn').onclick = function() {
+            if (image != '') {
+                FB.ui({
+                    method: 'share_open_graph',
+                    action_type: 'og.shares',
+                    display: 'popup',
+                    action_properties: JSON.stringify({
+                        object: {
+                           'og:url': link,
+                           'og:title': title,
+                           'og:description': description,
+                           'og:image': image,
+                       }
+                    })
+                }, function(response){});
+            } else {
+                FB.ui({
+                    method: 'share_open_graph',
+                    action_type: 'og.shares',
+                    display: 'popup',
+                    action_properties: JSON.stringify({
+                        object: {
+                           'og:url': link,
+                           'og:title': title,
+                           'og:description': description,
+                       }
+                    })
+               }, function(response){});
+            }
+        }
+    });
+
+
+</script>        </div>
+
+                <h1>Mentions légales</h1>
+    
+    
+    <div class="paragraphe"><h1>
+<span style="font-size:14px;"><strong>1. Informations générales</strong></span></h1>
+<p>
+<strong>Le site « www.gedimat.fr » a été élaboré par GEDEX</strong><br>
+<br>
+La société GEDEX, dont le siège social est au 6-8 rue Louis Rouquier - 92300 LEVALLOIS PERRET, SA Coopérative à capital variable, immatriculée au Registre du Commerce et des Sociétés de Nanterre sous le N° 301 894 630, n° de TVA intracommunautaire FR 43 301 894 630, assure la diffusion du site ci-après désigné « Gedimat ».<br>
+<br>
+La société GEDEX s'efforce de garantir la véracité et la fiabilité de l'ensemble des informations diffusées sur ce Site, dont elle se réserve le droit de modifier ou de corriger le contenu, n'importe quand et sans en avertissement préalable.<br>
+<strong><span style="font-size:14px;"> </span></strong></p>
+<h1>
+<strong><span style="font-size:14px;">2. Propriété intellectuelle</span></strong></h1>
+<p>
+Le site www.gedimat.fr ainsi que l’ensemble des contenus, qu’il s’agisse de textes, images, logos, graphiques, vidéos, photographies, la mise en page, ou tout autre élément distinctif sont la propriété de Gedimat, ou de tiers ayant concédé à Gedimat un droit d’utilisation et/ou de diffusion.<br>
+<br>
+Cet ensemble constitue une œuvre au sens du Code de la Propriété Intellectuelle et est, à ce titre, protégé par les droits d’auteur et tout autre droit de propriété intellectuelle ou industrielle qui leur sont reconnus selon les lois en vigueur. Le présent site et l’ensemble de son contenu ne peuvent être exploités qu’avec une autorisation préalable.<br>
+<br>
+Toute modification, représentation et reproduction intégrale ou partielle, pour un usage autre que privé est formellement interdite. Cette interdiction vaut quel que soit le support, le procédé de reproduction, de représentation et/ou de modification et quelle qu’en soit la durée.<br>
+<br>
+Ce site respecte le droit d'auteur. Tous les droits des auteurs des œuvres protégées reproduites et communiquées sur ce site, sont réservés. Sauf autorisation, toute utilisation des œuvres autres que la reproduction et la consultation individuelles et privées sont interdites.</p>
+<h1>
+<span style="font-size:14px;"><strong>3. Données personnelles et respect de la vie privées</strong></span></h1>
+<p>
+Dans une optique informative, vous pouvez consulter le site, et ses contenus, sans révéler votre identité ou quelconque information vous concernant.<br>
+<br>
+Cependant, certaines données personnelles vous seront demandées lors de l’inscription à l’espace Personnel <a href="https://www.gedimat.fr/clientPrivilege.php">Mon Compte</a>, ainsi que dans le <a href="https://www.gedimat.fr/contact.php">Formulaire de contact</a>. Ces informations dites données personnelles, sont celles « qui permettent, sous quelque forme que ce soit, directement ou indirectement, l’identification des personnes physiques auxquelles elles s’appliquent ». Pour les particuliers, il s’agira le plus souvent d’un nom, d’une adresse, d’un numéro de téléphone, d’une adresse e-mail ; pour les professionnels, il s’agira également des données concernant votre société (numéro Siret, raison sociale …)<br>
+<br>
+L’espace personnel <a href="http://www.gedimat.fr/clientPrivilege.php">Mon Compte</a> offre aux inscrits particuliers ou professionnels des options supplémentaires. Lorsque vous êtes inscrit, vous êtes seul responsable de votre compte, et pouvez à tout moment modifier les informations vous concernant, ou concernant votre société, ou vous désinscrire.<br>
+<br>
+<strong>Utilisation et transmission :</strong><br>
+Les informations nominatives recueillies sur le site ne seront utilisées qu’à des fins de gestion et pour des opérations de marketing direct initiées par GEDIMAT.<br>
+<br>
+En aucun cas, ces données ne feront l’objet d’une communication extérieure autre que celles prévues ci-dessus sauf aux fins de satisfaire à des obligations légales et réglementaires ou à la demande d’une administration ou d’une autorité judiciaire.<br>
+<br>
+<strong>Droit d’accès et de rectification :</strong><br>
+Conformément à la loi du 6 janvier 1978 dite « Loi Informatique et Libertés », complétée par le règlement de l'Union européenne du 14 avril 2016 relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données (Règlement général sur la protection des données ou RGPD), vous disposez notamment d’un droit d’accès, de modification et de suppression des données personnelles que vous nous avez communiquées.<br>
+<br>
+Ce droit peut être exercé directement dans votre espace personnel sur la page <a href="https://www.gedimat.fr/gestion-donnees-personnelles.php">Gestion de mes données personnelles</a>.<br>
+<br>
+Pour plus d'informations sur notre politique relative à la protection de vos données personnelles, nous vous invitons à cliquer notre <a href="https://uploads.gedimat.fr/CMS/files/Charte-Protection-Donnees-Personnelles_Gedimat(1).pdf"><strong>Charte relative à la protection des données personnelles</strong></a>.<br>
+<br>
+<strong>Gestion des cookies</strong><br>
+Pour connaître notre politique de gestion des cookies, nous vous invitons à vous rendre sur <a href="https://www.gedimat.fr/article-cookies-1515.htm">cette page</a>.</p>
+<h1>
+<span style="font-size:14px;"><strong>4. Liens vers d'autres sites</strong></span></h1>
+<p>
+Le site www.gedimat.fr peut donner accès à des sites appartenant à GEDIMAT et à nos partenaires, par des liens hypertextes ou par l’intégration dans notre site de contenus de sites de nos partenaires.<br>
+<br>
+Bien que le choix des liens vers des sites Internet extérieurs ait fait l’objet de soin et d’une vigilance particulière, GEDIMAT décline toute responsabilité relative au contenu de ces sites, à leur légalité, exactitude ou fonction et ne peut être tenu responsable de l’usage qui pourra en être fait par les utilisateurs.<br>
+<br>
+Toute création d’hyperliens avec notre site est interdite sans accord préalable écrit de GEDIMAT.</p>
+</div>
+
+    
+        <div class="enSavoirPlusParagraphe document">
+    <h2>Documents associés</h2>
+
+    <ul class="enSavoirPlusListe">
+                <li>
+            <a href="https://uploads.gedimat.fr/CMS/fichier_64_10.pdf" onclick="window.open(this.href);return false">
+                                    <span class="libelle"><span>Charte relative à la protection des données personnelles</span></span>
+            </a>
+        </li>
+            </ul>
+</div>
+
+    
+    
+    <script>
+    
+    $(document).ready(function() {
+        // Eolas show/hide - accordéon
+        $('.js-accordeonTitre:not(.ouvert)').eolasShowHide({
+            group: '.js-accordeonContenu',
+            state: 0,
+        });
+        $('.js-accordeonTitre.ouvert').eolasShowHide({
+            group: '.js-accordeonContenu',
+            state: 1,
+        });
+    });
+    
+</script>
+
+</div>
+</body>
+</html>
