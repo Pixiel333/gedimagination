@@ -47,15 +47,13 @@
 				break;
 			
 			case 'POST':
-                //(a voir)
+                postPhoto();
 				break;
 				
 			case 'PUT':
-				// TODO
 				break;
 				
 			case 'DELETE':
-				// TODO
 				break;
 
 			default:
@@ -81,4 +79,50 @@
 		header('Content-type: application/json');
 		$lesDates = DAL_getAllDates();
 		echo json_encode($lesDates);
+	}
+
+	// requête POST localhost/gedimagination/WebService
+	function postPhoto()
+	{
+		$json = file_get_contents('php://input');
+		if (!empty($json)) { 
+			$obj = json_decode($json);
+			foreach ($obj as $photo)
+			{
+				if (array_key_exists("idTicket", $photo)
+					&& array_key_exists("idPhoto", $photo)
+					&& array_key_exists("rating", $photo)
+					&& array_key_exists("dateVote", $photo))
+				{
+					$idTicket = $photo->idTicket;
+					$idPhoto = $photo->idPhoto;
+					$rating = $photo->rating;
+					$dateVote = $photo->dateVote;
+					$resultat = DAL_insertVotePhoto($idTicket, $idPhoto, $rating, $dateVote);
+					if($resultat == 1)
+					{
+						header('Content-Type: application/json');
+						echo json_encode("Vote ajouté avec succés");
+						http_response_code(201);
+					}
+					else
+					{
+						header('Content-Type: application/json');
+						echo json_encode("Erreur");
+						http_response_code(500);
+					}
+				}
+				else
+				{
+					header('Content-Type: application/json');
+					echo json_encode("Missing_field or bad_field");
+					http_response_code(422);
+				}
+			}
+		}
+		else {
+			header('Content-Type: application/json');
+			echo json_encode("Body should be a JSON object");
+			http_response_code(400);
+		}
 	}

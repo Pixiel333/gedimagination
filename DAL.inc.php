@@ -66,3 +66,30 @@ function participants()
         echo $e->getMessage();
     } 
 }
+
+function DAL_insertVotePhoto($idTicket, $idPhoto, $rating, $dateVote)
+{
+    $vote = 0;
+    try {
+        $connexion=connexionBase();
+        $reqSelect = 'SELECT vote FROM PHOTO WHERE id=:id';
+        $prep1 = $connexion->prepare($reqSelect);
+        $prep1->bindValue(':id', $idPhoto, PDO::PARAM_INT);
+        $prep1->execute();
+        $nbVote = $prep1->fetch();
+        if ($nbVote['vote'] != null)
+        {
+            $vote = $nbVote['vote'];
+        }
+        $vote += $rating;
+        $requete = 'INSERT INTO PHOTO(vote) VALUES(:vote) WHERE id=:id'; 
+        $prep = $connexion->prepare($requete);
+        $prep->bindValue(':id', $idPhoto, PDO::PARAM_INT);
+        $prep->bindValue(':vote', $vote, PDO::PARAM_INT);
+        $ok =$prep->execute();
+        return $prep->rowCount();
+    }
+    catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
