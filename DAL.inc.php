@@ -82,7 +82,7 @@ function DAL_insertVotePhoto($idTicket, $idPhoto, $rating, $dateVote)
             $vote = $nbVote['vote'];
         }
         $vote += $rating;
-        $requete = 'INSERT INTO PHOTO(vote) VALUES(:vote) WHERE id=:id'; 
+        $requete = 'UPDATE PHOTO SET vote = :vote WHERE id=:id'; 
         $prep = $connexion->prepare($requete);
         $prep->bindValue(':id', $idPhoto, PDO::PARAM_INT);
         $prep->bindValue(':vote', $vote, PDO::PARAM_INT);
